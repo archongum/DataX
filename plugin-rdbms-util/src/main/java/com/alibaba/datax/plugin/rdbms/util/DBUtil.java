@@ -440,9 +440,9 @@ public final class DBUtil {
         conn.setAutoCommit(false);
         Statement stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
                 ResultSet.CONCUR_READ_ONLY);
-        String url = conn.getMetaData().getURL();
+        String driverName = conn.getMetaData().getDriverName();
         // Hive JDBC不支持下面2个操作。
-        if (!url.startsWith("jdbc:hive")) {
+        if (!driverName.toLowerCase().contains("hive")) {
             stmt.setFetchSize(fetchSize);
             stmt.setQueryTimeout(queryTimeout);
         }
