@@ -42,7 +42,7 @@ public class ESClient {
                                    String user,
                                    String passwd,
                                    boolean multiThread,
-                                   int readTimeout,
+                                   int read,
                                    boolean compression,
                                    boolean discovery) {
 

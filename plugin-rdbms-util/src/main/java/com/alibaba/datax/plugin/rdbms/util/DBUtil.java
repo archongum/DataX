@@ -1,5 +1,22 @@
 package com.alibaba.datax.plugin.rdbms.util;
 
+import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Properties;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import com.alibaba.datax.common.exception.DataXException;
 import com.alibaba.datax.common.util.Configuration;
 import com.alibaba.datax.common.util.RetryUtil;
@@ -7,17 +24,11 @@ import com.alibaba.datax.plugin.rdbms.reader.Key;
 import com.alibaba.druid.sql.parser.SQLParserUtils;
 import com.alibaba.druid.sql.parser.SQLStatementParser;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.File;
-import java.sql.*;
-import java.util.*;
-import java.util.concurrent.*;
 
 public final class DBUtil {
     private static final Logger LOG = LoggerFactory.getLogger(DBUtil.class);
@@ -371,10 +382,11 @@ public final class DBUtil {
             LOG.info("this is ob1_0 jdbc url. user="+user+" :url="+url);
         }
 
+        LOG.info("Driver type name: {}, driver name: {}", dataBaseType.getTypeName(), dataBaseType.getDriverClassName());
         Properties prop = new Properties();
         prop.put("user", user);
-        // presto has no password
-        if (!dataBaseType.getDriverClassName().equals("io.prestosql.jdbc.PrestoDriver")) {
+        // 如果密码设置成“__null__”，则表示不设置密码。解决Presto传密码会开启SSL的问题。
+        if (!pass.equals("__null__")) {
             prop.put("password", pass);
         }
 
@@ -428,8 +440,12 @@ public final class DBUtil {
         conn.setAutoCommit(false);
         Statement stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
                 ResultSet.CONCUR_READ_ONLY);
-        stmt.setFetchSize(fetchSize);
-        stmt.setQueryTimeout(queryTimeout);
+        String url = conn.getMetaData().getURL();
+        // Hive JDBC不支持下面2个操作。
+        if (!url.startsWith("jdbc:hive")) {
+            stmt.setFetchSize(fetchSize);
+            stmt.setQueryTimeout(queryTimeout);
+        }
         return query(stmt, sql);
     }
 

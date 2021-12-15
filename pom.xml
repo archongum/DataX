@@ -45,42 +45,42 @@
         <module>transformer</module>
 
         <!-- reader -->
-        <module>mysqlreader</module>
-        <module>drdsreader</module>
-        <module>sqlserverreader</module>
-        <module>postgresqlreader</module>
-        <module>oraclereader</module>
-        <module>otsreader</module>
-        <module>txtfilereader</module>
-        <module>hdfsreader</module>
-        <module>streamreader</module>
-        <module>ossreader</module>
-        <module>ftpreader</module>
-        <module>mongodbreader</module>
-        <module>rdbmsreader</module>
-        <module>opentsdbreader</module>
-        <module>cassandrareader</module>
+<!--        <module>mysqlreader</module>-->
+<!--        <module>drdsreader</module>-->
+<!--        <module>sqlserverreader</module>-->
+<!--        <module>postgresqlreader</module>-->
+<!--        <module>oraclereader</module>-->
+<!--        <module>otsreader</module>-->
+<!--        <module>txtfilereader</module>-->
+<!--        <module>hdfsreader</module>-->
+<!--        <module>streamreader</module>-->
+<!--        <module>ossreader</module>-->
+<!--        <module>ftpreader</module>-->
+<!--        <module>mongodbreader</module>-->
+<!--        <module>rdbmsreader</module>-->
+<!--        <module>opentsdbreader</module>-->
+<!--        <module>cassandrareader</module>-->
 
         <!-- writer -->
-        <module>mysqlwriter</module>
-        <module>drdswriter</module>
-        <module>txtfilewriter</module>
-        <module>ftpwriter</module>
-        <module>hdfswriter</module>
-        <module>streamwriter</module>
-        <module>otswriter</module>
-        <module>oraclewriter</module>
-        <module>sqlserverwriter</module>
-        <module>postgresqlwriter</module>
-        <module>osswriter</module>
-        <module>mongodbwriter</module>
-        <module>ocswriter</module>
-        <module>rdbmswriter</module>
-        <module>elasticsearchwriter</module>
-        <module>tsdbwriter</module>
-        <module>adbpgwriter</module>
-        <module>gdbwriter</module>
-        <module>cassandrawriter</module>
+<!--        <module>mysqlwriter</module>-->
+<!--        <module>drdswriter</module>-->
+<!--        <module>txtfilewriter</module>-->
+<!--        <module>ftpwriter</module>-->
+<!--        <module>hdfswriter</module>-->
+<!--        <module>streamwriter</module>-->
+<!--        <module>otswriter</module>-->
+<!--        <module>oraclewriter</module>-->
+<!--        <module>sqlserverwriter</module>-->
+<!--        <module>postgresqlwriter</module>-->
+<!--        <module>osswriter</module>-->
+<!--        <module>mongodbwriter</module>-->
+<!--        <module>ocswriter</module>-->
+<!--        <module>rdbmswriter</module>-->
+<!--        <module>elasticsearchwriter</module>-->
+<!--        <module>tsdbwriter</module>-->
+<!--        <module>adbpgwriter</module>-->
+<!--        <module>gdbwriter</module>-->
+<!--        <module>cassandrawriter</module>-->
         
         <!-- common support module -->
         <module>plugin-rdbms-util</module>
